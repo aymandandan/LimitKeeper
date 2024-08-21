@@ -22,7 +22,7 @@ Use this API Rate Limiter when you need to:
 First, install the package via npm: 
 
 ```bash
-npm install package-name
+npm install rate-limiter
 ```
 
 ### 2. Importing and Setting Up
@@ -30,7 +30,7 @@ npm install package-name
 Import the rate limiter and configure it with your desired options:
 
 ```javascript
-const rateLimiter = require('package-name');
+const rateLimiter = require('rate-limiter');
 
 const options = {
     technique: 'sliding-window', // Options: 'sliding-window', 'leaky-bucket', 'token-bucket'
@@ -80,7 +80,7 @@ By default, if no technique is specified, the rate limiter will use the Sliding 
 
 ```javascript
 const express = require('express');
-const rateLimiter = require('package-name');
+const rateLimiter = require('rate-limiter');
 
 const app = express();
 
