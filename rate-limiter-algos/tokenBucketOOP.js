@@ -35,17 +35,17 @@ class TokenBucket {
 
 let tokenBucketMap = new Map();
 
-function consumeIP(ip) {
-  if (!tokenBucketMap.get(ip)) tokenBucketMap.set(ip, new TokenBucket(10, 1));
+module.exports.consumeIP = (ip, bucketSize, refillRate, refillInterval) => {
+  if (!tokenBucketMap.get(ip))
+    tokenBucketMap.set(
+      ip,
+      new TokenBucket(bucketSize, refillRate, refillInterval * 1000)
+    );
   if (!tokenBucketMap.get(ip).consumeToken())
     throw {
-      timeRemaining: `${
-        (tokenBucketMap.get(ip).refillInterval -
-          (Date.now() - tokenBucketMap.get(ip).lastRefillTime)) /
-        1000
-      }s`,
+      timeRemaining:
+        tokenBucketMap.get(ip).refillInterval -
+        (Date.now() - tokenBucketMap.get(ip).lastRefillTime),
       message: "Too many requests, please try again later!",
     };
-}
-
-module.exports = consumeIP;
+};
