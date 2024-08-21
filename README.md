@@ -91,11 +91,19 @@ const limiter = rateLimiter({
     refillInterval: 2
 });
 
+// global use: limits tha rate of all requests
 app.use(limiter);
 
 app.get('/', (req, res) => {
     res.send('Welcome to the rate-limited API!');
 });
+
+// route-specific limiting
+app.post('/api/data',
+    limiter,
+    (req, res) => {
+    res.send('Route specific rate-limitin');
+})l
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
