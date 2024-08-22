@@ -103,7 +103,7 @@ app.post('/api/data',
     limiter,
     (req, res) => {
     res.send('Route specific rate-limitin');
-})l
+});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
