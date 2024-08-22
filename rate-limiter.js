@@ -51,7 +51,7 @@ function createRateLimiter(options) {
 }
 
 // a function that returns a middleware to create a request limiter and consume a request
-function limitRequests(options = defualtOptions["sliding-window"]) {
+function limitRequests(options = defaultOptions["sliding-window"]) {
   const rateLimiter = createRateLimiter(options);
 
   return async (req, res, next) => {
