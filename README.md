@@ -17,7 +17,7 @@ Use this API Rate Limiter when you need to:
 
 ## How to Use It
 
-### 1. Installation (to be added soon...)
+### 1. Installation 
 
 First, install the package via npm: 
 
