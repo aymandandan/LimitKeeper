@@ -1,9 +1,9 @@
 
-# API Rate Limiter
+# LimitKeeper
 
 ## Introduction
 
-This API Rate Limiter is a flexible and robust middleware that allows you to control the rate of incoming requests to your server. It supports three rate-limiting techniques: Sliding Window Counter, Leaky Bucket, and Token Bucket. This middleware is particularly useful for preventing abuse, ensuring fair usage, and protecting your server from being overwhelmed by excessive requests.
+LimitKeeper is a flexible and robust middleware that allows you to control the rate of incoming requests to your server. It supports three rate-limiting techniques: Sliding Window Counter, Leaky Bucket, and Token Bucket. This middleware is particularly useful for preventing abuse, ensuring fair usage, and protecting your server from being overwhelmed by excessive requests.
 
 ## When to Use It
 
@@ -22,7 +22,7 @@ Use this API Rate Limiter when you need to:
 First, install the package via npm: 
 
 ```bash
-npm install rate-limiter
+npm install limitkeeper
 ```
 
 ### 2. Importing and Setting Up
@@ -30,7 +30,7 @@ npm install rate-limiter
 Import the rate limiter and configure it with your desired options:
 
 ```javascript
-const rateLimiter = require('rate-limiter');
+const rateLimiter = require('limitkeeper');
 
 const options = {
     technique: 'sliding-window', // Options: 'sliding-window', 'leaky-bucket', 'token-bucket'
@@ -80,7 +80,7 @@ By default, if no technique is specified, the rate limiter will use the Sliding 
 
 ```javascript
 const express = require('express');
-const rateLimiter = require('rate-limiter');
+const rateLimiter = require('limitkeeper');
 
 const app = express();
 
