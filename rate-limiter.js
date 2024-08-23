@@ -4,7 +4,7 @@ const LeakyConsume = require("./rate-limiter-algos/leaky-bucket").consumeIP;
 const TokenConsume = require("./rate-limiter-algos/tokenBucketOOP").consumeIP;
 
 // defualt options
-const defualtOptions = {
+const defaultOptions = {
   "sliding-window": {
     points: 100,
     duration: 60,
@@ -30,8 +30,8 @@ function createRateLimiter(options) {
     switch (technique) {
       case "sliding-window":
         rateLimiter = new RateLimiterMemory({
-          points: points || defualtOptions["sliding-window"].points, // Number of requests
-          duration: duration || defualtOptions["sliding-window"].duration, // Per second(s)
+          points: points || defaultOptions["sliding-window"].points, // Number of requests
+          duration: duration || defaultOptions["sliding-window"].duration, // Per second(s)
           blockDuration, // Block for the duration if points are consumed
         });
         break;
@@ -51,7 +51,7 @@ function createRateLimiter(options) {
 }
 
 // a function that returns a middleware to create a request limiter and consume a request
-function limitRequests(options = defualtOptions["sliding-window"]) {
+function limitRequests(options = defaultOptions["sliding-window"]) {
   const rateLimiter = createRateLimiter(options);
 
   return async (req, res, next) => {
@@ -66,17 +66,17 @@ function limitRequests(options = defualtOptions["sliding-window"]) {
         case "leaky-bucket":
           await LeakyConsume(
             key,
-            options.capacity || defualtOptions["leaky-bucket"].capacity,
-            options.interval || defualtOptions["leaky-bucket"].interval
+            options.capacity || defaultOptions["leaky-bucket"].capacity,
+            options.interval || defaultOptions["leaky-bucket"].interval
           );
           break;
         case "token-bucket":
           TokenConsume(
             key,
-            options.capacity || defualtOptions["token-bucket"].capacity,
-            options.refillRate || defualtOptions["token-bucket"].refillRate,
+            options.capacity || defaultOptions["token-bucket"].capacity,
+            options.refillRate || defaultOptions["token-bucket"].refillRate,
             options.refillInterval ||
-              defualtOptions["token-bucket"].refillInterval
+              defaultOptions["token-bucket"].refillInterval
           );
           break;
       }
